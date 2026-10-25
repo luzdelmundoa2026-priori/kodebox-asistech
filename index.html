@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<!--
+  Declaración del tipo de documento. Indica que este archivo es un documento HTML5.
+-->
+<html lang="es">
+<!--
+  Elemento raíz de la página HTML.
+  El atributo lang="es" indica que el idioma principal del contenido es español.
+-->
+
+<head>
+  <!--
+      Contiene metadatos, enlaces a estilos, scripts y el título de la página.
+    -->
+  <meta charset="UTF-8">
+  <!--
+      Define la codificación de caracteres del documento como UTF-8,
+      que soporta caracteres especiales y acentos propios del español.
+    -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!--
+      Hace que el diseño sea responsivo en dispositivos móviles.
+      width=device-width indica que el ancho de la página debe ser igual al ancho del dispositivo.
+      initial-scale=1.0 indica que el zoom inicial es del 100%.
+    -->
+  <title>Control de Asistencia</title>
+  <!--
+      El título que aparece en la pestaña del navegador.
+    -->
+  <link rel="stylesheet" href="css/estilo.css">
+  <!--
+      Enlace externo a la hoja de estilos CSS.
+      href="css/estilo.css" indica la ruta al archivo CSS que contiene los estilos de la página.
+    -->
+
+  <!-- Firebase SDKs -->
+  <!-- SDKs de Firebase compatibles con HTML sin módulos -->
+  <script src="https://www.gstatic.com/firebasejs/10.3.1/firebase-app-compat.js"></script>
+  <!--
+      Carga la biblioteca principal de Firebase (modo compatibilidad para navegadores sin soporte de módulos ES).
+      Permite inicializar la app Firebase en el navegador.
+    -->
+  <script src="https://www.gstatic.com/firebasejs/10.3.1/firebase-firestore-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.3.1/firebase-auth-compat.js"></script>
+  <!--
+      Carga la biblioteca Firestore (base de datos en la nube) en modo compatibilidad.
+      Permite conectar y manipular la base de datos Firestore desde JavaScript.
+    -->
+  <script>
+    // Configuración de Firebase
+    const firebaseConfig = {
+      apiKey: "AIzaSyCfVPNa_A6D1GFH7y_PHEBnMejxfEg78sc",
+      authDomain: "asistech20-7a824.firebaseapp.com",
+      projectId: "asistech20-7a824",
+      storageBucket: "asistech20-7a824.firebasestorage.app",
+      messagingSenderId: "600154883800",
+      appId: "1:600154883800:web:255f56216300a14c7b39ad"
+    };
+
+    /*
+      Objeto con la configuración específica de tu proyecto Firebase.
+      Incluye las claves API y los identificadores que conectan esta web con tu proyecto Firebase.
+      Estos datos son necesarios para autenticar y enlazar tu app web con Firebase.
+    */
+
+    // Inicializar Firebase
+    firebase.initializeApp(firebaseConfig);
+    /*
+      Inicializa la app Firebase en el navegador con la configuración anterior.
+      Esto crea una instancia que se puede usar para acceder a los servicios Firebase.
+    */
+
+    const db = firebase.firestore();
+    /*
+      Obtiene una referencia a la base de datos Firestore.
+      `db` será la variable para manipular colecciones y documentos en Firestore.
+    */
+
+    window.db = db; // lo hace accesible desde js.js
+    window.auth = firebase.auth();
+    /*
+      Asigna la referencia `db` al objeto global `window` para que sea accesible desde otros scripts,
+      en este caso, desde el archivo externo `js/js.js`.
+    */
+  </script>
+</head>
+
+<body>
+  <!--
+      body es Contenido visible de la página.
+      Todo lo que el usuario verá o interactuará dentro del navegador.
+    -->
+  <header class="header">
+    <!--
+          header es Elemento semántico para definir la cabecera o encabezado de la página.
+          La clase "header" permite aplicar estilos específicos desde CSS.
+        -->
+    <div class="header-container">
+      <!-- Logo izquierdo: Escudo del colegio superpuesto sobre el fondo institucional -->
+      <div class="header-col header-col-izq">
+        <div class="logo-colegio-badge" title="U.E. Luz del Mundo 'A'">
+          <img src="img/logo-colegio.png" alt="Logo de la U.E. Luz del Mundo 'A'" class="logo-colegio"
+            id="logo-colegio">
+        </div>
+      </div>
+      <div class="header-col-centro">
+        <h1 class="titulo">Control de Asistencia BTH</h1>
+        <p class="subtitulo">U.E. LUZ DEL MUNDO "A"</p>
+        <p class="lema">"Asistencia clara, familias informadas"</p>
+        <!--
+          boton modo Admin
+        -->
+        <button class="boton boton-admin" onclick="activarModoAdministrador()">Acceso docente</button>
+
+      </div>
+      <!--
+h1 es Título principal de la página (nivel 1).
+La clase "titulo" permite aplicar estilos CSS específicos.
+-->
+      <div class="header-col header-col-der">
+        <div class="logo-asistech-wrapper" title="Asistech">
+          <img src="img/logo-asistech.png" alt="Logo Asistech sin fondo" class="logo-asistech" id="logo-asistech">
+        </div>
+      </div>
+    </div>
+
+
+
+  </header>
+  <div id="acceso-docente" class="panel-acceso oculto">
+    <h2>Acceso para docentes</h2>
+    <p>Ingresa con el correo y la contraseña proporcionados por la institución.</p>
+    <label for="correo-docente">Correo electrónico</label>
+    <input id="correo-docente" type="email" autocomplete="username" placeholder="docente@correo.com">
+    <label for="contrasena-docente">Contraseña</label>
+    <input id="contrasena-docente" type="password" autocomplete="current-password" placeholder="Tu contraseña">
+    <button class="boton" onclick="iniciarSesionDocente()">Iniciar sesión</button>
+    <button id="cerrar-sesion" class="boton oculto" onclick="cerrarSesionDocente()">Cerrar sesión</button>
+    <p id="estado-sesion" aria-live="polite"></p>
+  </div>
+  <!--
+button Botón que activa el modo administrador.
+class="boton" para estilizar el botón desde CSS.
+onclick="activarModoAdministrador()" llama a la función JavaScript que activa el modo admin.
+-->
+  <main id="principal">
+    <!--
+          Elemento semántico que contiene el contenido principal de la página.
+          El atributo id="principal" permite referenciarlo desde CSS o JavaScript.
+        -->
+    <div class="grid" id="carreras">
+      <!--
+              Contenedor con clase "grid" que aplica un diseño de cuadrícula (grid layout) desde CSS.
+              id="carreras" permite seleccionarlo en JS para manipular su contenido.
+            -->
+      <button type="button" class="tarjeta sistemas" data-carrera="T.T.E. Sistemas Informáticos">
+        <span class="tarjeta-icono">
+          <img src="img/logo-sistemas.png" alt="Sistemas Informáticos" class="icono-carrera">
+        </span>
+        <span class="tarjeta-texto">Sistemas Informáticos</span>
+      </button>
+      <!--
+              Cada uno de estos divs es una "tarjeta" para representar una carrera.
+              Clase "tarjeta" para estilo general de tarjetas.
+              Clase "sistemas" para estilos específicos de la carrera Sistemas Informáticos (color, iconos, etc).
+              onclick llama a función JS que mostrará los años disponibles para la carrera especificada.
+              Texto visible: nombre de la carrera.
+            -->
+      <!-- Tarjeta 2: Electrónica (Logo de microchip / procesador) -->
+      <button type="button" class="tarjeta electronica" data-carrera="T.T.E. Electrónica">
+        <span class="tarjeta-icono">
+          <img src="img/logo-electronica.png" alt="Electrónica" class="icono-carrera">
+        </span>
+        <span class="tarjeta-texto">Electrónica</span>
+      </button>
+
+      <!-- Tarjeta 3: Transformación de Alimentos (Logo de manzana con gorro de chef) -->
+      <button type="button" class="tarjeta alimentos" data-carrera="T.T.E. Transformación de Alimentos">
+        <span class="tarjeta-icono">
+          <img src="img/logo-alimentos.png" alt="Transformación de Alimentos" class="icono-carrera">
+        </span>
+        <span class="tarjeta-texto">Transformación de Alimentos</span>
+      </button>
+
+      <!-- Tarjeta 4: Contaduría General (Logo de factura con monedas de dólar) -->
+      <button type="button" class="tarjeta contaduria" data-carrera="T.T.E. Contaduría General">
+        <span class="tarjeta-icono">
+          <img src="img/logo-contaduria.png" alt="Contaduría General" class="icono-carrera">
+        </span>
+        <span class="tarjeta-texto">Contaduría General</span>
+      </button>
+      <!--
+              Tarjetas similares para otras carreras, cada una con clases específicas para estilos.
+            -->
+    </div>
+    <div id="contenido"></div>
+    <!--
+          Contenedor vacío con id="contenido".
+          Aquí se colocará contenido dinámico desde JavaScript: años, trimestres, tablas, etc.
+        -->
+    <template id="plantilla-anios">
+      <section>
+        <h2 data-titulo></h2>
+        <div class="cuadricula">
+          <button type="button" class="tarjeta" data-anio="4to">4to de Secundaria</button>
+          <button type="button" class="tarjeta" data-anio="5to">5to de Secundaria</button>
+          <button type="button" class="tarjeta" data-anio="6to">6to de Secundaria</button>
+        </div>
+      </section>
+    </template>
+    <template id="plantilla-trimestres">
+      <section>
+        <h2 data-titulo></h2>
+        <div class="cuadricula">
+          <button type="button" class="tarjeta" data-trimestre="1er Trimestre">1er Trimestre</button>
+          <button type="button" class="tarjeta" data-trimestre="2do Trimestre">2do Trimestre</button>
+          <button type="button" class="tarjeta" data-trimestre="3er Trimestre">3er Trimestre</button>
+        </div>
+      </section>
+    </template>
+  </main>
+
+  <script src="js/js.js"></script>
+  <!--
+      Enlace a un archivo JavaScript externo.
+      js/js.js contiene la lógica principal para la interacción de la página,
+      manejo de datos y comunicación con Firebase.
+      Se carga al final para que el HTML esté listo antes de ejecutar el JS.
+    -->
+</body>
+
+</html>

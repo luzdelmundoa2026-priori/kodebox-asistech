@@ -1,0 +1,678 @@
+/* Identidad visual BTH: azul institucional, amarillo y colores por carrera */
+
+:root {
+    --azul-institucional: #162960;
+    --azul-secundario: #264A86;
+    --amarillo-institucional: #FFD900;
+    --cian-tecnologico: #00B8D9;
+    --color-sistemas: #E8D8A8;
+    --color-electronica: #456B92;
+    --color-alimentos: #FFFFFF;
+    --color-contaduria: #0D5B59;
+    --color-fondo: #F4F6FA;
+    --color-texto: #202A3A;
+    --color-texto-suave: #5A6678;
+    --color-borde: #D8DFE9;
+    --sombra-tarjeta: 0 3px 8px rgba(22, 41, 96, 0.08), 0 10px 24px rgba(22, 41, 96, 0.09);
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    width: 100%;
+    padding: 0;
+    color: var(--color-texto);
+    background: var(--color-fondo);
+    font-family: 'Aptos', 'Segoe UI', Arial, sans-serif;
+    line-height: 1.5;
+}
+
+.header {
+    width: 100%;
+    box-sizing: border-box;
+    background-image: linear-gradient(rgba(0, 22, 54, 0.42), rgba(0, 22, 54, 0.52)), url("../img/fondo-colegio.jpg");
+    background-size: 100% 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 60vh;
+    min-height: 300px;
+    box-sizing: border-box;
+}
+
+.header-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 1200px;
+    min-height: 190px;
+    margin: 0 auto;
+    gap: 1.25rem;
+    height: calc(60vh - 3.5rem);
+    max-height: none;
+}
+
+.header-col-izq,
+.header-col-der {
+    flex: 0 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.header-col-centro {
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+
+/* Escudo del colegio: estilo circular limpio. Lo dejamos fijo sin transiciones ni animación al pasar el ratón */
+
+.logo-colegio-badge {
+    width: 180px;
+    height: 180px;
+    background: #f3f2f2;
+    border-radius: 50%;
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.28), 0 0 0 3px var(--amarillo-institucional);
+}
+
+.logo-colegio {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+}
+
+
+/* 
+   Con este código se define el contenedor del logo de Asistech:
+   - Se retira cualquier color de fondo, recuadro, filtro y borde para que la imagen quede totalmente limpia y sin fondo.
+   - La imagen del logo se muestra directamente sin fondo sobre el encabezado institucional.
+*/
+
+.logo-asistech-wrapper {
+    width: 180px;
+    height: 180px;
+    background: #f3f2f2;
+    border-radius: 50%;
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.28), 0 0 0 3px var(--amarillo-institucional);
+}
+
+.logo-asistech {
+    height: 80px;
+    width: auto;
+    max-width: 125px;
+    object-fit: contain;
+    display: block;
+    filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.4));
+}
+
+h1,
+h2,
+h3 {
+    text-align: center;
+    line-height: 1.25;
+}
+
+h1,
+.titulo {
+    margin: 150px 0 0.15rem;
+    color: var(--amarillo-institucional);
+    font-family: 'Trebuchet MS', 'Segoe UI', sans-serif;
+    font-size: clamp(1.2rem, 2.5vw, 1.85rem);
+    font-weight: 800;
+    letter-spacing: 0.035em;
+    text-transform: uppercase;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.75), 0 0 15px rgba(0, 20, 50, 0.6);
+    line-height: 1.2;
+}
+
+.subtitulo {
+    margin: 10px 0 0.25rem;
+    color: #FFFFFF;
+    font-family: 'Trebuchet MS', 'Segoe UI', sans-serif;
+    font-size: clamp(0.95rem, 2vw, 1.3rem);
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.75);
+    line-height: 1.2;
+}
+
+.lema {
+    margin: 10px 0 0.65rem;
+    color: #fff4d1;
+    font-size: clamp(0.85rem, 1.4vw, 0.95rem);
+    font-style: italic;
+    letter-spacing: 0.02em;
+    opacity: 0.95;
+    text-shadow: 0 2px 5px rgba(0, 0, 0, 0.75);
+}
+
+h2 {
+    margin: 1.25rem 0 0.8rem;
+    color: var(--azul-institucional);
+    font-family: 'Trebuchet MS', 'Segoe UI', sans-serif;
+    font-size: clamp(1.2rem, 2.5vw, 1.65rem);
+}
+
+h3 {
+    color: var(--azul-institucional);
+}
+
+.boton-admin {
+    display: block;
+    width: fit-content;
+    margin: 50px auto;
+    padding: 0.52rem 1.4rem;
+    border-radius: 20px;
+    font-size: 0.92rem;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
+}
+
+#principal {
+    width: min(100% - 2rem, 1200px);
+    margin: 0 auto;
+    padding: 1.2rem 0 2rem;
+}
+
+.grid,
+.cuadricula {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr));
+    gap: 1.1rem;
+    align-items: stretch;
+}
+
+.cuadricula {
+    max-width: 950px;
+    margin: 0 auto;
+}
+
+.tarjeta {
+    appearance: none;
+    width: 100%;
+    min-height: 84px;
+    padding: 1.1rem 1.2rem;
+    border: 2px solid var(--amarillo-borde);
+    border-radius: 16px;
+    color: var(--azul-institucional);
+    background: var(--amarillo-pastel);
+    box-shadow: var(--sombra-tarjeta);
+    cursor: pointer;
+    font: inherit;
+    font-size: 1.05rem;
+    font-weight: 750;
+    text-align: center;
+    transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6rem;
+}
+
+.tarjeta:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 18px rgba(22, 41, 96, 0.18), 0 0 0 1px rgba(0, 184, 217, 0.28), 0 0 22px rgba(0, 184, 217, 0.2);
+    filter: brightness(0.98);
+}
+
+.tarjeta-icono {
+    width: 48px;
+    height: 48px;
+    min-width: 48px;
+    border-radius: 50%;
+    background-color: #ffffff;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 7px;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.16);
+    flex-shrink: 0;
+    transition: transform 180ms ease, box-shadow 180ms ease;
+}
+
+
+/* 
+   Con este código se aplica una microanimación suave: cuando el usuario pasa el mouse sobre la tarjeta,
+   el círculo con el logo se amplía un 8% (scale(1.08)) y proyecta una sombra más profunda.
+*/
+
+.tarjeta:hover .tarjeta-icono {
+    transform: scale(1.08);
+    box-shadow: 0 5px 12px rgba(0, 0, 0, 0.22);
+}
+
+
+/* 
+   Con este código se ajusta la imagen del logo dentro del círculo blanco:
+   - object-fit: contain: asegura que el logo se escale proporcionalmente sin recortarse ni estirarse.
+*/
+
+.icono-carrera {
+    text-align: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    justify-content: center;
+    display: block;
+}
+
+.tarjeta-texto {
+    flex: 1;
+    text-align: left;
+}
+
+.tarjeta:focus-visible,
+.boton:focus-visible,
+input:focus-visible,
+select:focus-visible {
+    outline: 3px solid var(--amarillo-institucional);
+    outline-offset: 3px;
+    box-shadow: 0 0 0 5px rgba(0, 184, 217, 0.18);
+}
+
+
+/* Colores de las carreras BTH */
+
+.tarjeta.sistemas {
+    color: #111111;
+    background: var(--color-sistemas);
+    border-color: #222222;
+}
+
+.tarjeta.electronica {
+    color: #FFFFFF;
+    background: var(--color-electronica);
+    border-color: #263F5A;
+}
+
+.tarjeta.alimentos {
+    color: #171717;
+    background: var(--color-alimentos);
+    border-color: #333333;
+}
+
+.tarjeta.contaduria {
+    color: #FFFFFF;
+    background: var(--color-contaduria);
+    border-color: #083F3D;
+}
+
+.boton {
+    display: inline-flex;
+    min-height: 42px;
+    align-items: center;
+    justify-content: center;
+    padding: 0.62rem 1rem;
+    border: 2px solid var(--amarillo-institucional);
+    border-radius: 8px;
+    color: var(--azul-institucional);
+    background: var(--amarillo-institucional);
+    cursor: pointer;
+    font: inherit;
+    font-size: 0.96rem;
+    font-weight: 750;
+    text-decoration: none;
+    box-shadow: 0 3px 0 rgba(22, 41, 96, 0.16), 0 5px 12px rgba(22, 41, 96, 0.12);
+    transition: background-color 160ms ease, color 160ms ease, transform 160ms ease;
+}
+
+.boton:hover {
+    color: #FFFFFF;
+    background: var(--azul-secundario);
+    border-color: var(--azul-secundario);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(22, 41, 96, 0.22), 0 0 16px rgba(0, 184, 217, 0.28);
+}
+
+
+/* Paneles de acceso y contacto docente */
+
+.panel-acceso,
+.contacto-docente {
+    width: min(100%, 520px);
+    margin: 1rem auto;
+    padding: 1.25rem;
+    border: 1px solid var(--color-borde);
+    border-radius: 14px;
+    background: #FFFFFF;
+    box-shadow: 0 8px 24px rgba(22, 41, 96, 0.12), 0 0 18px rgba(0, 184, 217, 0.07);
+    text-align: center;
+}
+
+.panel-acceso {
+    width: min(100%, 360px);
+    padding: 0.75rem 0.9rem;
+}
+
+.panel-acceso h2 {
+    margin: 0.15rem 0 0.45rem;
+    font-size: 1.1rem;
+}
+
+.panel-acceso p,
+.contacto-docente p {
+    color: var(--color-texto-suave);
+}
+
+.panel-acceso p {
+    margin: 0.35rem 0 0.6rem;
+    font-size: 0.82rem;
+}
+
+.panel-acceso label,
+.contacto-docente label {
+    display: block;
+    width: min(100%, 380px);
+    margin: 0.55rem auto 0.25rem;
+    color: var(--azul-institucional);
+    font-size: 0.9rem;
+    font-weight: 700;
+    text-align: left;
+}
+
+.panel-acceso label {
+    width: 100%;
+    margin-top: 0.35rem;
+    font-size: 0.82rem;
+}
+
+.panel-acceso input,
+.contacto-docente input,
+select {
+    display: block;
+    width: min(100%, 380px);
+    min-height: 42px;
+    margin: 0.3rem auto 0.85rem;
+    padding: 0.62rem 0.75rem;
+    border: 1px solid #B9C4D3;
+    border-radius: 8px;
+    color: var(--color-texto);
+    background: #FBFCFE;
+    font: inherit;
+}
+
+.panel-acceso input {
+    width: 100%;
+    min-height: 36px;
+    margin: 0.15rem 0 0.5rem;
+    padding: 0.48rem 0.58rem;
+    font-size: 0.88rem;
+}
+
+.panel-acceso input:focus,
+.contacto-docente input:focus,
+select:focus {
+    border-color: var(--cian-tecnologico);
+    box-shadow: 0 0 0 3px rgba(0, 184, 217, 0.16);
+    outline: none;
+}
+
+.panel-acceso .boton,
+.contacto-docente .boton {
+    margin: 0.55rem 0 0;
+}
+
+.panel-acceso .boton {
+    min-height: 36px;
+    padding: 0.45rem 0.7rem;
+    font-size: 0.85rem;
+}
+
+.contacto-docente small {
+    display: block;
+    color: var(--color-texto-suave);
+}
+
+.nombre-contacto {
+    margin-bottom: 0.4rem;
+    color: var(--azul-institucional) !important;
+    font-size: 1.1rem;
+    font-weight: 750;
+}
+
+
+/* Botón de contacto por WhatsApp */
+
+.enlace-whatsapp {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    margin-top: 0.35rem;
+    border-radius: 50%;
+    background-color: #25D366;
+    color: #fff;
+    text-decoration: none;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.18);
+    transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.enlace-whatsapp:hover {
+    background-color: #128C7E;
+    color: #fff;
+    transform: translateY(-2px);
+}
+
+.enlace-whatsapp svg {
+    width: 26px;
+    height: 26px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.7;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.enlace-whatsapp svg path:nth-child(2) {
+    fill: none;
+}
+
+
+/* Tabla de asistencia */
+
+#contenido table {
+    display: block;
+    width: 100%;
+    margin-top: 1rem;
+    overflow-x: auto;
+    border-collapse: collapse;
+    border-radius: 10px;
+    background: #FFFFFF;
+    box-shadow: 0 6px 18px rgba(22, 41, 96, 0.11), 0 0 16px rgba(0, 184, 217, 0.06);
+}
+
+th,
+td {
+    padding: 0.65rem;
+    border: 1px solid var(--color-borde);
+    font-size: 0.94rem;
+    text-align: center;
+}
+
+th {
+    color: #FFFFFF;
+    background: var(--azul-institucional);
+    font-weight: 750;
+}
+
+th:nth-child(2),
+td:nth-child(2) {
+    min-width: 200px;
+    text-align: left;
+    white-space: nowrap;
+}
+
+th:not(:nth-child(1)):not(:nth-child(2)),
+td:not(:nth-child(1)):not(:nth-child(2)) {
+    min-width: 60px;
+    max-width: 90px;
+    white-space: nowrap;
+}
+
+td select {
+    width: auto;
+    min-width: 58px;
+    min-height: 36px;
+    margin: 0 auto;
+    padding: 0.35rem;
+}
+
+.verde {
+    color: #137A43;
+    font-weight: 800;
+}
+
+.rojo {
+    color: #C62828;
+    font-weight: 800;
+}
+
+.azul {
+    color: #2466A8;
+    font-weight: 800;
+}
+
+.oculto {
+    display: none;
+}
+
+@media (max-width: 600px) {
+    #principal {
+        width: min(100% - 1rem, 1200px);
+        padding-top: 0.75rem;
+    }
+    .header {
+        height: auto !important;
+        min-height: 0 !important;
+        padding: 1rem 1rem 1.5rem !important;
+        overflow: visible;
+        background-size: cover;
+        background-position: center;
+    }
+    .header-container {
+        display: grid !important;
+        grid-template-columns: 1fr 1fr;
+        grid-template-areas: "logo-izq logo-der" "centro centro";
+        justify-items: center;
+        align-items: center;
+        gap: 0.75rem;
+        width: 100%;
+        height: auto !important;
+        max-height: none !important;
+        margin: 0 auto;
+    }
+    .header-col-izq,
+    .header-col-der,
+    .header-col-centro {
+        position: static !important;
+        inset: auto !important;
+        transform: none !important;
+        margin: 0 !important;
+    }
+    .header-col-izq {
+        grid-area: logo-izq;
+    }
+    .header-col-der {
+        grid-area: logo-der;
+    }
+    .header-col-centro {
+        grid-area: centro;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        min-width: 0;
+        padding-top: 0.4rem;
+        text-align: center;
+    }
+    .logo-colegio-badge,
+    .logo-asistech-wrapper {
+        width: 90px;
+        height: 90px;
+        padding: 4px;
+    }
+    .logo-asistech {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+    }
+    .header-col-centro .titulo,
+    .header-col-centro .subtitulo,
+    .header-col-centro .lema {
+        position: static !important;
+        transform: none !important;
+        width: 100%;
+        max-width: 100%;
+        text-align: center;
+    }
+    .header-col-centro .titulo {
+        margin: 0 0 0.3rem;
+        font-size: clamp(1.15rem, 6vw, 1.6rem);
+        line-height: 1.15;
+    }
+    .header-col-centro .subtitulo {
+        margin: 0 0 0.3rem;
+        font-size: clamp(0.95rem, 4.5vw, 1.15rem);
+        line-height: 1.2;
+    }
+    .header-col-centro .lema {
+        margin: 0 0 0.75rem;
+        font-size: 0.9rem;
+        line-height: 1.35;
+    }
+    .boton-admin {
+        position: static !important;
+        transform: none !important;
+        margin: 0 auto !important;
+    }
+    .grid,
+    .cuadricula {
+        grid-template-columns: 1fr;
+        gap: 0.8rem;
+    }
+    .tarjeta {
+        min-height: 72px;
+        padding: 0.9rem;
+        font-size: 1rem;
+    }
+    .panel-acceso,
+    .contacto-docente {
+        padding: 1rem;
+    }
+    .panel-acceso {
+        width: min(100%, 280px);
+        padding: 0.7rem 0.8rem;
+    }
+    th,
+    td {
+        padding: 0.48rem;
+        font-size: 0.82rem;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+    }
+}
